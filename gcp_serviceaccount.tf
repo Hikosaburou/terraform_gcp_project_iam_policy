@@ -10,7 +10,7 @@ resource "google_project_iam_member" "sa_ssh" {
   for_each = var.role_sa_ssh
 
   project = var.gcp_project_id
-  role    = each.value["role"]
+  role    = each.value.role
   member  = "serviceAccount:${google_service_account.sa_ssh.email}"
 
   dynamic condition {
