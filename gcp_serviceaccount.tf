@@ -14,7 +14,7 @@ resource "google_project_iam_member" "sa_ssh" {
   member  = "serviceAccount:${google_service_account.sa_ssh.email}"
 
   dynamic condition {
-    for_each = contains(keys(each.value), "condition") ? [each.value["condition"]] : []
+    for_each = contains(keys(each.value), "conditions") ? each.value["conditions"] : []
     content {
       title       = condition.value.title
       description = condition.value.description

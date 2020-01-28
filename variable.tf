@@ -33,11 +33,13 @@ variable "role_sa_ssh" {
     },
     iap_tunnelresourceaccessor = {
       role = "roles/iap.tunnelResourceAccessor"
-      condition = {
-        title       = "restrict_tcp_tunneling"
-        description = "Allow access for destination port 22 in the request"
-        expression  = "destination.port == 22"
-      }
+      conditions = [
+        {
+          title       = "restrict_tcp_tunneling"
+          description = "Allow access for destination port 22 in the request"
+          expression  = "destination.port == 22"
+        }
+      ]
     },
     sauser = {
       role = "roles/iam.serviceAccountUser"
